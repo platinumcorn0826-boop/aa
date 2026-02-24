@@ -1,0 +1,199 @@
+/* ============================================
+   MEMENTO — Themes Definition
+   ============================================ */
+
+/* --- 1. Precision (Default) --- */
+body.theme-precision {
+    --bg-primary: #07070d;
+    --bg-secondary: #0d0d18;
+    --bg-card: rgba(15, 15, 30, 0.8);
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+    --radius-md: 12px;
+}
+
+/* --- 2. Zen (Minimalist & Organic) --- */
+body.theme-zen {
+    --bg-primary: #121412;
+    /* Deep charcoal/green */
+    --bg-secondary: #1a1d1a;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-card-hover: rgba(255, 255, 255, 0.05);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+
+    --text-primary: #f0f0e8;
+    --text-secondary: rgba(240, 240, 232, 0.7);
+
+    --font-mono: 'Optima', 'Candara', 'Inter', sans-serif;
+    --font-sans: 'Georgia', serif;
+
+    --radius-md: 24px;
+    /* Rounder */
+    --accent: #b8c6a4;
+    /* Sage green */
+}
+
+body.theme-zen .count-number {
+    font-family: var(--font-sans);
+    font-weight: 200;
+    letter-spacing: -2px;
+}
+
+body.theme-zen .mode-tabs,
+body.theme-zen .filter-toggle,
+body.theme-zen .stat-card,
+body.theme-zen .message-area {
+    backdrop-filter: blur(40px);
+    border-radius: var(--radius-md);
+}
+
+/* --- 3. Obsidian (High Contrast / OLED) --- */
+body.theme-obsidian {
+    --bg-primary: #000000;
+    --bg-secondary: #050505;
+    --bg-card: #080808;
+    --bg-card-hover: #101010;
+    --border-subtle: #222;
+    --border-active: #444;
+
+    --text-primary: #ffffff;
+    --text-secondary: #999;
+
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+
+    --radius-md: 0px;
+    /* Sharp corners */
+    --accent: #ff0055;
+    /* Hot magenta */
+}
+
+body.theme-obsidian::before {
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 0, 85, 0.05) 0%, transparent 60%);
+}
+
+body.theme-obsidian .count-number {
+    text-shadow: none;
+    font-weight: 800;
+}
+
+body.theme-obsidian .progress-circle-bg {
+    stroke: #111;
+}
+
+body.theme-zen .progress-circle {
+    display: none;
+}
+
+body.theme-zen .progress-hourglass {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 15px var(--accent-glow));
+}
+
+.progress-hourglass {
+    display: none;
+}
+
+.hourglass-frame {
+    fill: var(--text-muted);
+    opacity: 0.5;
+}
+
+.hourglass-glass {
+    fill: rgba(255, 255, 255, 0.03);
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+}
+
+.sand-top {
+    fill: var(--accent);
+    opacity: 0.8;
+}
+
+.sand-bottom {
+    fill: var(--accent);
+    opacity: 0.8;
+}
+
+.sand-stream {
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-dasharray: 4, 2;
+    stroke-linecap: round;
+    opacity: 0;
+    animation: sand-flow 1s linear infinite;
+}
+
+@keyframes sand-flow {
+    from {
+        stroke-dashoffset: 6;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+body.theme-zen .progress-circle-text {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Theme Selector UI Styles (Common for all themes) */
+.theme-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.theme-option {
+    cursor: pointer;
+}
+
+.theme-option input {
+    display: none;
+}
+
+.theme-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    transition: all var(--transition-fast);
+}
+
+.theme-option input:checked+.theme-card {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.theme-name {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.theme-card.precision {
+    background: #07070d;
+}
+
+.theme-card.zen {
+    background: #121412;
+}
+
+.theme-card.obsidian {
+    background: #000000;
+}
+
+.theme-option input:checked+.theme-card .theme-name {
+    color: var(--accent);
+    font-weight: 700;
+}
